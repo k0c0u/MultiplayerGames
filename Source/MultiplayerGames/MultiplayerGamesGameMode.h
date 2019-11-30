@@ -11,8 +11,18 @@ class AMultiplayerGamesGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(EditDefaultsOnly, Category = "Spectating")
+	TSubclassOf<AActor> SpectatingViewpointClass;
+
 public:
 	AMultiplayerGamesGameMode();
+
+	void ComleteMission(APawn* InstigatorPawn, bool bMissionSuccess);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	void OnMissionCompleted(APawn* InstigatorPawn, bool bMissionSuccess);
 };
 
 

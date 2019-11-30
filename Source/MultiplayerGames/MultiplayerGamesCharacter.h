@@ -7,6 +7,7 @@
 #include "MultiplayerGamesCharacter.generated.h"
 
 class UInputComponent;
+class UPawnNoiseEmitterComponent;
 
 UCLASS(config=Game)
 class AMultiplayerGamesCharacter : public ACharacter
@@ -44,7 +45,7 @@ class AMultiplayerGamesCharacter : public ACharacter
 	/** Motion controller (left hand) */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UMotionControllerComponent* L_MotionController;
-
+		
 public:
 	AMultiplayerGamesCharacter();
 
@@ -79,6 +80,14 @@ public:
 	/** Whether to use motion controller location for aiming. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint32 bUsingMotionControllers : 1;
+
+	/** Добавил булевую переменную. */
+	UPROPERTY(BlueprintReadWrite, Category = "Gameplay")
+	bool bIsCarryingObjective;
+
+	/** Издает звуки */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
+	UPawnNoiseEmitterComponent* NoiseEmitterComponent;
 
 protected:
 	

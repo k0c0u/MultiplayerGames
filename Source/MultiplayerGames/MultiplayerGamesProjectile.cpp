@@ -38,8 +38,11 @@ void AMultiplayerGamesProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Ot
 	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
-
-		Destroy();
 	}
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, GetActorLocation());
+
+	// издаем шум
+	MakeNoise(1.0f, Instigator);
+
+	Destroy();
 }
